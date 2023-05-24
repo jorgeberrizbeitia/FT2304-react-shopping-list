@@ -7,11 +7,11 @@ import Search from './components/Search';
 
 function App() {
 
-  const [ products, setProducts ] = useState([
-    { name: "agua", price: 2 },
-    { name: "pizza", price: 4 },
-    { name: "papel", price: 1 }
-  ])
+  const [ products, setProducts ] = useState([])
+  const [ filteredProducts, setFilteredProducts ] = useState([])
+
+  // BONUS
+  // const [ searchInput, setSearchInput ] = useState("")
 
   const [ isFormShowing, setIsFormShowing ] = useState(false)
 
@@ -24,6 +24,7 @@ function App() {
 
     //setProducts del clone y el producto nuevo
     setProducts(clone)
+    setFilteredProducts(clone)
     // setProducts( [...products, newProduct] )
     setIsFormShowing(false)
   }
@@ -37,6 +38,23 @@ function App() {
     // setIsFormShowing( !isFormShowing )
   }
 
+  const searchProduct = (search) => {
+    console.log(search) // patata
+
+
+
+    let filteredArr = products.filter((eachProduct) => {
+      if (eachProduct.name.includes(search)) {
+        return true // agrega el elemento
+      } else {
+        return false // no agregues el elemento
+      }
+    })
+
+    console.log(filteredArr)
+    setFilteredProducts(filteredArr)
+  }
+
   return (
     <div className="App">
 
@@ -45,9 +63,13 @@ function App() {
       { isFormShowing === true ? <AddForm añadirProducto={añadirProducto}/> : null }
       
 
-      <Search />
+      <Search searchProduct={searchProduct}/>
+      {/* //* BONUS */}
+      {/* <Search setSearchInput={setSearchInput} searchInput={searchInput}/> */}
 
-      <ProductList patata={ products }/>
+      <ProductList patata={ filteredProducts }/>
+      {/* //* BONUS */}
+      {/* <ProductList patata={ products.filter((eachProduct) => eachProduct.name.includes(searchInput)) }/> */}
 
     </div>
   );
