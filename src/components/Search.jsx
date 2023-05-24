@@ -1,5 +1,8 @@
 import { useState } from "react"
 
+import Form from 'react-bootstrap/Form';
+import Container from "react-bootstrap/Container"
+
 
 function Search(props) {
 
@@ -30,7 +33,9 @@ function Search(props) {
       
         <h2>Busquedas</h2>
 
-        <input type="text" name="search" value={searchInput} onChange={handleSearchChange}/>
+        <Container>
+          <Form.Control type="text" name="search" value={searchInput} onChange={handleSearchChange}/>
+        </Container>
         {/* BONUS */}
         {/* <input type="text" name="search" value={props.searchInput} onChange={handleSearchChange}/> */}
 

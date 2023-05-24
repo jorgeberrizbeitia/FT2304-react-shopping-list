@@ -1,5 +1,9 @@
 import { useState } from "react"
 
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
+import { Container } from "react-bootstrap"
+
 
 function AddForm(props) {
 
@@ -27,8 +31,8 @@ function AddForm(props) {
     // 2. Agregar ese producto al array de productos
     props.añadirProducto( newProduct )
     
-    // setNameInput("")
-    // setPriceInput(0)
+    setNameInput("")
+    setPriceInput(0)
 
   }
 
@@ -37,21 +41,24 @@ function AddForm(props) {
       
       <h2>Formulario de agregar</h2>
 
-      <form onSubmit={ handleFormSubmit }>
+      <Container>
+        <Form onSubmit={ handleFormSubmit }>
 
-        <label htmlFor="name">Nombre:</label>
-        <input type="text" name="name" onChange={handleNameChange} value={nameInput}/>
+          <Form.Group>
+            <Form.Label htmlFor="name">Nombre:</Form.Label>
+            <Form.Control type="text" name="name" onChange={handleNameChange} value={nameInput}/>
+          </Form.Group>
 
-        <br />
+          <Form.Group>
+            <Form.Label htmlFor="price">Precio</Form.Label>
+            <Form.Control type="number" name="price" onChange={handlePriceChange} value={priceInput}/>
+          </Form.Group>
 
-        <label htmlFor="price">Precio</label>
-        <input type="number" name="price" onChange={handlePriceChange} value={priceInput}/>
+          <Button variant="success" type="submit">Agregar</Button>
 
-        <br />
+        </Form>
+      </Container>
 
-        <button>Agregar</button>
-
-      </form>
 
     </div>
   )
